@@ -7,7 +7,7 @@ import { JacfUpdateAparatoDto } from './dto/jacf-update-aparato.dto';
 export class JacfAparatosController {
   constructor(private readonly jacfAparatosService: JacfAparatosService) {}
 
-  @Post()
+  @Post('jacfcreate')
   create(@Body() jacfcreateAparatoDto: JacfCreateAparatoDto) {
     return this.jacfAparatosService.jacfcreate(jacfcreateAparatoDto);
   }
@@ -15,10 +15,5 @@ export class JacfAparatosController {
   @Get()
   findAll() {
     return this.jacfAparatosService.jacfgetAll();
-  }
-
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.jacfAparatosService.jacfgetId(id);
   }
 }

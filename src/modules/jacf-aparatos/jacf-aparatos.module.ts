@@ -12,6 +12,7 @@ import { JacfAparato } from './entities/jacf-aparato.entity';
     ConfigModule,
     TypeOrmModule.forFeature([ JacfAparato])
   ],
-  exports: [ JacfAparatosService ]
+  exports: [ JacfAparatosService,
+             TypeOrmModule ]
 })
 export class JacfAparatosModule {}

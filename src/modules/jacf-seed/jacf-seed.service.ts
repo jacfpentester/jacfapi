@@ -4,22 +4,22 @@ import { JacfAparatosService } from '../jacf-aparatos/jacf-aparatos.service';
 import { JacfIncidenciasService } from '../jacf-incidencias/jacf-incidencias.service';
 import  dataUsuarios  from '../jacf-seed/data/usuarios.json'; 
 import  dataAparatos  from '../jacf-seed/data/aparatos.json';
-//import  dataIncidencias  from '../jacf-seed/data/incidencias.json';
+import  dataIncidencias  from '../jacf-seed/data/incidencias.json';
 
 @Injectable()
 export class JacfSeedService {
  
   constructor (
-    //private readonly jacfAuthService: JacfAuthService,
+    private readonly jacfAuthService: JacfAuthService,
     private readonly jacfAparatosService: JacfAparatosService,
-   // private readonly jacfIncidenciasService: JacfIncidenciasService,
+    private readonly jacfIncidenciasService: JacfIncidenciasService,
  ){}
  
  runData(){
-    this.jacfAparatosService.jacfdeleteAllAparatos()
-   //this.insertNewAparatos()
-  //  this.jacfAuthService.jacfdeleteAllUsers();
-  //  this.insertNewUsers();
+   this.jacfAparatosService.jacfdeleteAllAparatos()
+   this.insertNewAparatos()
+   this.jacfAuthService.jacfdeleteAllUsers();
+   this.insertNewUsers();
    return dataAparatos;
  }
   
@@ -31,11 +31,19 @@ export class JacfSeedService {
       await Promise.all(insertPromises);
     }
 
-    // private async insertNewUsers(){
-    //   const insertPromises = [];
-    //   dataUsuarios.forEach( user => {
-    //     insertPromises.push(this.jacfAuthService.jacfregister(user))
-    //   })
-    //   await Promise.all(insertPromises);
-    // }
+    private async insertNewUsers(){
+      const insertPromises = [];
+      dataUsuarios.forEach( user => {
+        insertPromises.push(this.jacfAuthService.jacfregister(user))
+      })
+      await Promise.all(insertPromises);
+    }
+
+    private async insertNewIncidencia(){
+      const insertPromises = [];
+      dataIncidencias.forEach( incidencia => {
+        insertPromises.push(this.jacfIncidenciasService.jacfcreate(incidencia))
+      })
+      await Promise.all(insertPromises);
+    }
 }

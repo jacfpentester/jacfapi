@@ -1,7 +1,7 @@
 import { JacfIncidencia } from "../../jacf-incidencias/entities/jacf-incidencia.entity";
 import { Column, Entity, OneToMany, PrimaryColumn, PrimaryGeneratedColumn } from "typeorm";
 
-@Entity('jacfUsuarios')
+@Entity('JacfUsuarios')
 export class JacfUsuario {
 
     @PrimaryColumn()
@@ -24,8 +24,8 @@ export class JacfUsuario {
 
     @OneToMany(
         () => JacfIncidencia,
-        (JacfIncidencia) => JacfIncidencia.jacfusuarios,
+        (JacfIncidencia) => JacfIncidencia.usuario,
         { cascade: true, eager: true  }
     )
-    jacfincidencias?: JacfIncidencia[];
+    incidencia?: JacfIncidencia[];
 }

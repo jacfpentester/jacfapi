@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { JacfAuthModule } from './modules/jacf-auth/jacf-auth.module';
+import { JacfAuthModule } from './modules/index';
 import { JacfSeedModule } from './modules/jacf-seed/jacf-seed.module';
 import { JacfAparatosModule } from './modules/jacf-aparatos/jacf-aparatos.module';
 import { JacfIncidenciasModule } from './modules/jacf-incidencias/jacf-incidencias.module';
@@ -15,8 +15,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
      type:'postgres',
       host: process.env.DB_HOST,
       port: 5432,
-      database: process.env.DB_NAME,
-      username: process.env.DB_USERNAME,
+      database: 'jacfIncidencias',
+      username: 'postgres',
       // password: process.env.DB_PASSWORD,
       password: 'pswIncidencias',
       autoLoadEntities: true,

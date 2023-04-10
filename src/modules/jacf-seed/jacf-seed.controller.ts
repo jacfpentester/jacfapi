@@ -8,6 +8,6 @@ export class JacfSeedController {
     @Get()
     executeSeed() {
       console.log('jacf-seed');
-      return this.jacfSeedService.runData();
+      //return this.jacfSeedService.runData();
   }
 }

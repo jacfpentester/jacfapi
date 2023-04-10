@@ -33,17 +33,25 @@ export class JacfAuthService {
     }
   }
 
-  findAll() {
-    return this.userRepository.find({});
-  }
-
-  findOne(idea: string) {
+  jacfgetid(idea: string) {
     return this.userRepository.findOne({
       where: {
         idea
       }
     })
   }
+
+  findAll() {
+    return this.userRepository.find({});
+  }
+
+  // findOne(idea: string) {
+  //   return this.userRepository.findOne({
+  //     where: {
+  //       idea
+  //     }
+  //   })
+  // }
 
   update(id: number, updateAuthDto: JacfUpdateUserDto) {
     return `This action updates a #${id} auth`;
@@ -53,7 +61,7 @@ export class JacfAuthService {
     return `This action removes a #${id} auth`;
   }
 
-  async deleteAllUsers(){
+  async jacfdeleteAllUsers(){
     const query = this.userRepository.createQueryBuilder('user');
     try {
       return await query

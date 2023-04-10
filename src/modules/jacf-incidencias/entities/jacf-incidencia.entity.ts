@@ -19,15 +19,15 @@ export class JacfIncidencia {
 
     @ManyToOne(
         () => JacfAparato,
-        (JacfAparato) => JacfAparato.jacfincidencias,
+        (JacfAparato) => JacfAparato.incidencia,
         {  onDelete: 'CASCADE' }    
     )
-    jacfaparatos?: JacfAparato;
+    aparato?: JacfAparato;
 
     @ManyToOne(
         () => JacfUsuario,
-        (JacfUsuario) => JacfUsuario.jacfincidencias,
+        (JacfUsuario) => JacfUsuario.incidencia,
         {  onDelete: 'CASCADE' }    
     )
-    jacfusuarios?: JacfUsuario;
+    usuario?: JacfUsuario;
 }

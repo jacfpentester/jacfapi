@@ -7,28 +7,28 @@ import { JacfUpdateIncidenciaDto } from './dto/jacf-update-incidencia.dto';
 export class JacfIncidenciasController {
   constructor(private readonly jacfIncidenciasService: JacfIncidenciasService) {}
 
-  @Post()
+  @Post('jacfcreate')
   create(@Body() createJacfIncidenciaDto: JacfCreateIncidenciaDto) {
-    return this.jacfIncidenciasService.create(createJacfIncidenciaDto);
+    return this.jacfIncidenciasService.jacfcreate(createJacfIncidenciaDto);
   }
 
-  @Get()
-  findAll() {
-    return this.jacfIncidenciasService.findAll();
+  // @Get()
+  // findAll() {
+  //   return this.jacfIncidenciasService.findAll();
+  // }
+
+  @Get(':codigo')
+  findOne(@Param('codigo') codigo: string) {
+    return this.jacfIncidenciasService.jacfgetId(codigo);
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.jacfIncidenciasService.findOne(+id);
-  }
+  // @Patch(':id')
+  // update(@Param('id') id: string, @Body() updateJacfIncidenciaDto: JacfUpdateIncidenciaDto) {
+  //   return this.jacfIncidenciasService.update(+id, updateJacfIncidenciaDto);
+  // }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateJacfIncidenciaDto: JacfUpdateIncidenciaDto) {
-    return this.jacfIncidenciasService.update(+id, updateJacfIncidenciaDto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.jacfIncidenciasService.remove(+id);
-  }
+  // @Delete(':id')
+  // remove(@Param('id') id: string) {
+  //   return this.jacfIncidenciasService.remove(+id);
+  // }
 }

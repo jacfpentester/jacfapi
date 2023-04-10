@@ -14,7 +14,6 @@ export class JacfCreateAparatoDto {
     tipo: string;
 
     @IsNumber()
-    @MinLength(1)
     anio:number;
 
     @IsString()
