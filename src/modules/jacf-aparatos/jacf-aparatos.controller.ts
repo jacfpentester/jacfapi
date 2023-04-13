@@ -12,7 +12,7 @@ export class JacfAparatosController {
     return this.jacfAparatosService.jacfcreate(jacfcreateAparatoDto);
   }
 
-  @Get()
+  @Get('jacfgetAll')
   findAll() {
     return this.jacfAparatosService.jacfgetAll();
   }

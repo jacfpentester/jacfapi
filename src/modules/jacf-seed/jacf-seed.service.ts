@@ -5,6 +5,7 @@ import { JacfIncidenciasService } from '../jacf-incidencias/jacf-incidencias.ser
 import  dataUsuarios  from '../jacf-seed/data/usuarios.json'; 
 import  dataAparatos  from '../jacf-seed/data/aparatos.json';
 import  dataIncidencias  from '../jacf-seed/data/incidencias.json';
+import { JacfCreateIncidenciaDto} from '../jacf-incidencias/dto/jacf-create-incidencia.dto'
 
 @Injectable()
 export class JacfSeedService {
@@ -15,11 +16,13 @@ export class JacfSeedService {
     private readonly jacfIncidenciasService: JacfIncidenciasService,
  ){}
  
- runData(){
-   this.jacfAparatosService.jacfdeleteAllAparatos()
-   this.insertNewAparatos()
-   this.jacfAuthService.jacfdeleteAllUsers();
+ runData(){ 
+    this.jacfIncidenciasService.jacfdeleteAllIncidencias();
+  //  this.jacfAparatosService.jacfdeleteAllAparatos();
+  //  this.jacfAuthService.jacfdeleteAllUsers();
+   this.insertNewAparatos();
    this.insertNewUsers();
+   this.insertNewIncidencias();
    return dataAparatos;
  }
   
@@ -39,7 +42,7 @@ export class JacfSeedService {
       await Promise.all(insertPromises);
     }
 
-    private async insertNewIncidencia(){
+    private async insertNewIncidencias(){
       const insertPromises = [];
       dataIncidencias.forEach( incidencia => {
         insertPromises.push(this.jacfIncidenciasService.jacfcreate(incidencia))

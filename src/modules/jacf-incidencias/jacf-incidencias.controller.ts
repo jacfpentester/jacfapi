@@ -2,6 +2,8 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { JacfIncidenciasService } from './jacf-incidencias.service';
 import { JacfCreateIncidenciaDto } from './dto/jacf-create-incidencia.dto';
 import { JacfUpdateIncidenciaDto } from './dto/jacf-update-incidencia.dto';
+import { Req } from '@nestjs/common';
+import { Request } from 'express';
 
 @Controller('jacf-incidencias')
 export class JacfIncidenciasController {
@@ -17,18 +19,13 @@ export class JacfIncidenciasController {
   //   return this.jacfIncidenciasService.findAll();
   // }
 
-  @Get(':codigo')
-  findOne(@Param('codigo') codigo: string) {
-    return this.jacfIncidenciasService.jacfgetId(codigo);
+  @Get('jacfgetId/:cproducto/:cusuario')
+  findOne(@Param('cproducto') cproducto: string, @Param('cusuario') cusuario: string) {
+    return this.jacfIncidenciasService.jacfgetId(cproducto, cusuario);
   }
 
-  // @Patch(':id')
-  // update(@Param('id') id: string, @Body() updateJacfIncidenciaDto: JacfUpdateIncidenciaDto) {
-  //   return this.jacfIncidenciasService.update(+id, updateJacfIncidenciaDto);
-  // }
-
-  // @Delete(':id')
-  // remove(@Param('id') id: string) {
-  //   return this.jacfIncidenciasService.remove(+id);
+  // @Get('jacfgetId/:cproducto/:cusuario')
+  // findOne(@Req() request: Request){
+  //   return this.jacfIncidenciasService.jacfgetId(request.query);
   // }
 }

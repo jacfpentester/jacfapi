@@ -5,6 +5,7 @@ import { JacfAuthService } from '../jacf-auth/jacf-auth.service';
 import { JacfAparatosModule } from '../jacf-aparatos/jacf-aparatos.module';
 import { JacfIncidenciasModule } from '../jacf-incidencias/jacf-incidencias.module';
 import { JacfAuthModule } from '../jacf-auth/jacf-auth.module';
+import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({
   controllers: [JacfSeedController],

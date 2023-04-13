@@ -18,4 +18,10 @@ export class JacfCreateIncidenciaDto {
 
     @IsIn(['pendiente', 'finalizada', 'en proceso'])
     status: string = 'pendiente';
+
+    // @IsString()
+    // aparatorelCod:string;
+
+    // @IsString()
+    // usuariorelIdea:string;
 }

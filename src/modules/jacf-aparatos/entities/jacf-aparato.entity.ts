@@ -20,8 +20,8 @@ export class JacfAparato {
 
     @OneToMany(
         () => JacfIncidencia,
-        (JacfIncidencia) => JacfIncidencia.aparato,
+        (JacfIncidencia) => JacfIncidencia.aparatorel,
         { cascade: true, eager: true  }
     )
-    incidencia?: JacfIncidencia[];
+    incidenciarel?: JacfIncidencia[];
 }

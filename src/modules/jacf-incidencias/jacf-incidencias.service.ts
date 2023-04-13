@@ -13,15 +13,15 @@ export class JacfIncidenciasService {
     @InjectRepository(JacfIncidencia)
     private readonly incidenciasRepository: Repository<JacfIncidencia>,
     private readonly usuariosService: JacfAuthService,
-    private readonly aparatosService: JacfAparatosService
+    private readonly aparatosService: JacfAparatosService,
     ){}
 
     async jacfcreate(createIncidenciaDto: JacfCreateIncidenciaDto) {
       try {
         const { idea, cod, ...data } = createIncidenciaDto;
         const incidencia = this.incidenciasRepository.create({ ...data });
-        incidencia.aparato = await this.aparatosService.jacfgetId(cod);
-        incidencia.usuario = await this.usuariosService.jacfgetid(idea);
+        incidencia.aparatorel = await this.aparatosService.jacfgetId(cod);
+        incidencia.usuariorel = await this.usuariosService.jacfgetid(idea);
         await this.incidenciasRepository.save(incidencia);
         return incidencia
       }catch (error) {
@@ -34,13 +34,20 @@ export class JacfIncidenciasService {
     
     }
 
-  jacfgetId(codigo: string) {
-    return this.incidenciasRepository.findOne({
-      where: {
-        codigo
-      }
-    });
+  jacfgetId(cproducto: string, cusuario: string) {
+    console.log("valor",cproducto,"valor",cusuario)
+   return this.incidenciasRepository.find({
+    where:{
+      aparatorelCod: cproducto,
+      usuariorelIdea: cusuario,
+    }
+    })
   }
+
+  // jacfgetId(params):any{
+  //   console.log(params.cproducto)
+  //   console.log(params.cusuario)
+  // }
 
   // findAll() {
   //   return this.incidenciasRepository.find({})
@@ -58,7 +65,7 @@ export class JacfIncidenciasService {
   //   return `This action removes a #${id} jacfIncidencia`;
   // }
 
-  async jacfdeleteAllUsers(){
+  async jacfdeleteAllIncidencias(){
     const query = this.incidenciasRepository.createQueryBuilder('user');
     try {
       return await query

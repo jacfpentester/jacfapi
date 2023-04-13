@@ -17,17 +17,24 @@ export class JacfIncidencia {
     @Column('text')
     status: string;
 
+
+    @Column('text')
+    aparatorelCod: string;
+    
+    @Column('text')
+    usuariorelIdea: string;
+    
     @ManyToOne(
         () => JacfAparato,
-        (JacfAparato) => JacfAparato.incidencia,
-        {  onDelete: 'CASCADE' }    
+        (JacfAparato) => JacfAparato.incidenciarel,
+       // {  onDelete: 'CASCADE' }    
     )
-    aparato?: JacfAparato;
+    aparatorel?: JacfAparato;
 
     @ManyToOne(
         () => JacfUsuario,
-        (JacfUsuario) => JacfUsuario.incidencia,
-        {  onDelete: 'CASCADE' }    
+        (JacfUsuario) => JacfUsuario.incidenciarel,
+       // {  onDelete: 'CASCADE' }    
     )
-    usuario?: JacfUsuario;
+    usuariorel?: JacfUsuario;
 }

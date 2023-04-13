@@ -34,10 +34,10 @@ export class JacfAuthService {
   }
 
   jacfgetid(idea: string) {
-    return this.userRepository.findOne({
+    return this.userRepository.findOne({ 
       where: {
         idea
-      }
+      }  
     })
   }
 

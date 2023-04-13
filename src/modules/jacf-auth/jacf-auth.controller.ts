@@ -17,7 +17,7 @@ export class JacfAuthController {
   //   return this.jacfAuthService.findAll();
   // }
 
-  @Get(':idea')
+  @Get('jacfgetId/:idea')
   findOne(@Param('idea') idea: string) {
     return this.jacfAuthService.jacfgetid(idea);
   }

@@ -22,10 +22,11 @@ export class JacfUsuario {
     @Column('text')
     rol: string;
 
+
     @OneToMany(
         () => JacfIncidencia,
-        (JacfIncidencia) => JacfIncidencia.usuario,
+        (JacfIncidencia) => JacfIncidencia.usuariorel,
         { cascade: true, eager: true  }
     )
-    incidencia?: JacfIncidencia[];
+    incidenciarel?: JacfIncidencia[];
 }
